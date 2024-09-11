@@ -1,0 +1,210 @@
+/* Importa a fonte Chakra Petch do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Estiliza o corpo da página */
+body {
+    font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
+    background-color: #000000; /* Cor de fundo clara para bem-estar */
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    height: 100vh; /* Preenche a altura total da viewport */
+    margin: 0; /* Remove a margem padrão */
+    padding: 0; /* Remove o padding padrão */
+    background-image: url('imgs/ansiedade.jpg'); /* Imagem de fundo para o tema de tecnologia e bem-estar */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajusta o tamanho da imagem para caber na área disponível */
+    background-attachment: fixed; /* Mantém a imagem fixa na tela ao rolar */
+}
+
+/* Estiliza a container */
+.container {
+    max-width: 800px; /* Reduz a largura máxima para 800 pixels */
+    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    padding: 1rem; /* Reduz o espaçamento interno para 1 rem */
+}
+
+/* Estiliza os títulos h1 */
+h1 {
+    font-size: 2.5rem; /* Tamanho da fonte */
+    color: #000000; /* Cor do texto em tom verde escuro */
+    text-align: center; /* Alinha o texto ao centro */
+    letter-spacing: 0.4rem; /* Espaçamento entre letras */
+}
+
+/* Estiliza as seções da página */
+section {
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin-bottom: 3rem; /* Espaçamento abaixo de cada seção */
+    background-color: #ffffff; /* Cor de fundo branca para contraste */
+    padding: 2rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+
+/* Estiliza os inputs dentro das seções */
+section input {
+    width: 30rem; /* Largura dos inputs */
+    border: 1px solid #000000; /* Borda com cor combinando com o tema */
+    padding: 1rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+    margin-bottom: 1rem; /* Espaçamento abaixo dos inputs */
+    color: #004d40; /* Cor do texto */
+    font-size: 1rem; /* Tamanho da fonte */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Estiliza os botões dentro das seções */
+section button {
+    padding: 0.8rem 1.2rem; /* Espaçamento interno do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 0.6rem; /* Borda arredondada */
+    background-color: #000000; /* Cor de fundo do botão */
+    color: #ffffff; /* Cor do texto do botão */
+    font-size: 1rem; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+/* Adiciona efeito hover ao botão de pesquisa */
+section button:hover {
+    background-color: #000000; /* Muda a cor de fundo ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra mais intensa */
+}
+
+/* Estiliza a caixa de resultados da pesquisa */
+.resultados-pesquisa {
+    width: 60rem; /* Largura máxima da caixa de resultados */
+    height: 46vh; /* Altura máxima da caixa de resultados */
+    overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+    margin-top: 1rem; /* Espaçamento acima da caixa de resultados */
+    padding: 1rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+    background: #ffffff; /* Cor de fundo dos itens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+
+/* Estiliza cada item de resultado */
+.item-resultado {
+    background: #f0f4f4; /* Cor de fundo leve para os itens */
+    border-radius: 0.6rem; /* Borda arredondada */
+    padding: 1rem; /* Espaçamento interno */
+    margin-bottom: 1rem; /* Espaçamento abaixo dos itens */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+/* Estiliza os títulos dentro dos itens de resultado */
+.item-resultado h2 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    color: #000000; /* Cor do texto */
+}
+
+/* Estiliza os links dentro dos itens de resultado */
+.item-resultado a {
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    color: #FFA500; /* Cor do texto dos links */
+}
+
+/* Estiliza os links quando são passados o mouse sobre */
+.item-resultado a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* Estiliza a descrição meta dentro dos itens de resultado */
+.descricao-meta {
+    color: #000000; /* Cor do texto */
+    margin: 0.5rem 0; /* Margem acima e abaixo */
+}
+
+/* Estiliza o rodapé da página */
+footer {
+    background-color: transparent; /* Cor de fundo combinando com o tema */
+    color: transparent; /* Cor do texto */
+    padding: 1rem; /* Espaçamento interno */
+    text-align: center; /* Alinha o texto ao centro */
+    width: 100%; /* Largura total do rodapé */
+    position: absolute; /* Posiciona o rodapé na parte inferior */
+    bottom: 0; /* Alinha o rodapé à parte inferior da página */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+/* Estiliza os parágrafos dentro do rodapé */
+footer p {
+    background-color: #FFA500; /* Cor de fundo para destacar o texto */
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000000; /* Cor do texto */
+}
+
+/* Estiliza imagens explicativas */
+.imagem-explicativa,
+img {
+    width: 150px; /* Define a largura de todas as imagens para 150px */
+    height: auto; /* Mantém a altura proporcional */
+    border-radius: 0.6rem; /* Adiciona borda arredondada */
+}
+
+/* Estiliza a seção do quiz */
+#quiz-section {
+    padding: 20px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 1.5rem; /* Tamanho da fonte em telas menores */
+        letter-spacing: 0.1rem; /* Espaçamento entre letras em telas menores */
+    }
+
+    section input {
+        width: 20rem; /* Largura dos inputs em telas menores */
+        padding: 0.5rem; /* Espaçamento interno em telas menores */
+    }
+
+    .resultados-pesquisa {
+        width: 30rem; /* Largura da caixa de resultados em telas menores */
+        height: 30vh; /* Altura da caixa de resultados em telas menores */
+    }
+
+    .item-resultado h2 {
+        font-size: 1.3rem; /* Tamanho da fonte dos títulos em telas menores */
+    }
+
+    .imagem-explicativa,
+    img {
+        width: 150px; /* Mantém a largura de todas as imagens em 150px */
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 300px) {
+    h1 {
+        font-size: 1.2rem; /* Tamanho da fonte em telas pequenas */
+        letter-spacing: 0.1rem; /* Espaçamento entre letras em telas pequenas */
+    }
+
+    section input {
+        width: 15rem; /* Largura total dos inputs em telas pequenas */
+    }
+
+    section button {
+        padding: 0.6rem 1
