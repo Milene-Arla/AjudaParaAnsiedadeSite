@@ -19,12 +19,13 @@ Este projeto foi desenvolvido durante a **Imersão Dev com Google Gemini - Alura
 ## Como Rodar o Projeto
 
 ## 1. Clone este repositório:
-```bash
 git clone https://github.com/Milene-Arla/AjudaParaAnsiedadeSite.git
-## Navegue até a pasta do projeto:
+## 2. Navegue até a pasta do projeto:
 cd AjudaParaAnsiedadeSite
-## Abra o arquivo index.html no navegador.
-Links:
+## 3. Abra o arquivo index.html no navegador.
+
+## Link do site:
 [Site do Projeto](https://ajuda-para-ansiedade-site.vercel.app/)
+
 ## Autor
-##Este projeto foi criado por Milene Arla, como parte do aprendizado na Imersão Dev com Google Gemini - Alura. Para entrar em contato, envie um e-mail para: milene16@outlook.com
+Este projeto foi criado por Milene Arla, como parte do aprendizado na Imersão Dev com Google Gemini - Alura. Para entrar em contato, envie um e-mail para: milene16@outlook.com
