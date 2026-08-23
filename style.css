@@ -4,7 +4,7 @@
 /* Estiliza o corpo da página */
 body {
     font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
-    background-color: #000000; /* Cor de fundo clara para bem-estar */
+    background-color: #F8F6F2; /* Cor de fundo clara para bem-estar */
     display: flex; /* Usa Flexbox para layout */
     flex-direction: column; /* Alinha os itens na vertical */
     align-items: center; /* Centraliza os itens horizontalmente */
@@ -29,7 +29,7 @@ body {
 /* Estiliza os títulos h1 */
 h1 {
     font-size: 2.5rem; /* Tamanho da fonte */
-    color: #000000; /* Cor do texto em tom verde escuro */
+    color: #52796F; /* Cor do texto em tom verde escuro */
     text-align: center; /* Alinha o texto ao centro */
     letter-spacing: 0.4rem; /* Espaçamento entre letras */
 }
@@ -40,7 +40,7 @@ section {
     flex-direction: column; /* Alinha os itens na vertical */
     align-items: center; /* Centraliza os itens horizontalmente */
     margin-bottom: 3rem; /* Espaçamento abaixo de cada seção */
-    background-color: #ffffff; /* Cor de fundo branca para contraste */
+    background-color: #FDFBF7; /* Cor de fundo branca para contraste */
     padding: 2rem; /* Espaçamento interno */
     border-radius: 0.6rem; /* Borda arredondada */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
@@ -49,11 +49,11 @@ section {
 /* Estiliza os inputs dentro das seções */
 section input {
     width: 30rem; /* Largura dos inputs */
-    border: 1px solid #000000; /* Borda com cor combinando com o tema */
+    border: 1px solid #52796F; /* Borda com cor combinando com o tema */
     padding: 1rem; /* Espaçamento interno */
     border-radius: 0.6rem; /* Borda arredondada */
     margin-bottom: 1rem; /* Espaçamento abaixo dos inputs */
-    color: #004d40; /* Cor do texto */
+    color: #52796F; /* Cor do texto */
     font-size: 1rem; /* Tamanho da fonte */
     box-sizing: border-box; /* Inclui padding e border na largura total */
 }
@@ -63,7 +63,7 @@ section button {
     padding: 0.8rem 1.2rem; /* Espaçamento interno do botão */
     border: none; /* Remove a borda padrão */
     border-radius: 0.6rem; /* Borda arredondada */
-    background-color: #000000; /* Cor de fundo do botão */
+    background-color: #52796F; /* Cor de fundo do botão */
     color: #ffffff; /* Cor do texto do botão */
     font-size: 1rem; /* Tamanho da fonte */
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
@@ -71,7 +71,7 @@ section button {
 
 /* Adiciona efeito hover ao botão de pesquisa */
 section button:hover {
-    background-color: #000000; /* Muda a cor de fundo ao passar o mouse */
+    background-color: #4F6D7A; /* Muda a cor de fundo ao passar o mouse */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra mais intensa */
 }
 
@@ -83,13 +83,13 @@ section button:hover {
     margin-top: 1rem; /* Espaçamento acima da caixa de resultados */
     padding: 1rem; /* Espaçamento interno */
     border-radius: 0.6rem; /* Borda arredondada */
-    background: #ffffff; /* Cor de fundo dos itens */
+    background: #FDFBF7; /* Cor de fundo dos itens */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
 }
 
 /* Estiliza cada item de resultado */
 .item-resultado {
-    background: #f0f4f4; /* Cor de fundo leve para os itens */
+    background: #EEE9E3; /* Cor de fundo leve para os itens */
     border-radius: 0.6rem; /* Borda arredondada */
     padding: 1rem; /* Espaçamento interno */
     margin-bottom: 1rem; /* Espaçamento abaixo dos itens */
@@ -99,13 +99,13 @@ section button:hover {
 /* Estiliza os títulos dentro dos itens de resultado */
 .item-resultado h2 {
     font-size: 1.5rem; /* Tamanho da fonte */
-    color: #000000; /* Cor do texto */
+    color: #52796F; /* Cor do texto */
 }
 
 /* Estiliza os links dentro dos itens de resultado */
 .item-resultado a {
     text-decoration: none; /* Remove o sublinhado padrão dos links */
-    color: #FFA500; /* Cor do texto dos links */
+    color: #CDB4DB; /* Cor do texto dos links */
 }
 
 /* Estiliza os links quando são passados o mouse sobre */
@@ -115,7 +115,7 @@ section button:hover {
 
 /* Estiliza a descrição meta dentro dos itens de resultado */
 .descricao-meta {
-    color: #000000; /* Cor do texto */
+    color: #555555; /* Cor do texto */
     margin: 0.5rem 0; /* Margem acima e abaixo */
 }
 
@@ -133,11 +133,11 @@ footer {
 
 /* Estiliza os parágrafos dentro do rodapé */
 footer p {
-    background-color: #FFA500; /* Cor de fundo para destacar o texto */
+    background-color: #CDB4DB; /* Cor de fundo para destacar o texto */
     display: inline-block;
     padding: 10px;
     border-radius: 5px;
-    color: #000000; /* Cor do texto */
+    color: #333333; /* Cor do texto */
 }
 
 /* Estiliza imagens explicativas */
@@ -154,7 +154,7 @@ img {
 }
 
 fieldset {
-    border: 1px solid #ddd;
+    border: 1px solid #52796F;
     padding: 10px;
     margin-bottom: 15px;
 }
