@@ -1,23 +1,112 @@
-<!-- Seção de Busca com Filtro de Categorias -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Espaço de Apoio para Ansiedade: Encontrando Calma e Conforto</title>
+</head>
+
+<body>
+    <h1>Respire e Relaxe: Seu Espaço Contra a Ansiedade</h1>
+
+    <main class="container">
+        <!-- AC 1 - Funcionalidade Principal de Cadastro (INSERT): Check-in de Sentimentos -->
+        <section class="secao-checkin" id="secao-checkin">
+            <h2 class="subtitulo-checkin">🌿 Check-in: Como você está se sentindo hoje?</h2>
+            <p class="descricao-checkin">
+                Registre seu momento com segurança e discrição. O código de acompanhamento servirá para você consultar seu histórico futuramente, sem necessidade de login.
+            </p>
+
+            <form id="form-checkin" onsubmit="salvarCheckin(event)" class="form-checkin">
+                <div class="campo-grupo">
+                    <label for="codigo-acompanhamento">Código de Acompanhamento (pessoal e anônimo):</label>
+                    <div class="codigo-input-wrapper">
+                        <input type="text" id="codigo-acompanhamento" placeholder="Ex: RESPIRA-2026" required maxlength="50">
+                        <button type="button" class="btn-gerar-codigo" onclick="gerarCodigoAleatorio()">🎲 Gerar Código</button>
+                    </div>
+                    <small class="dica-campo">Guarde este código para acessar seus registros futuros.</small>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="nivel-ansiedade">
+                        Nível de Ansiedade (1 a 10): 
+                        <span id="badge-nivel" class="badge-nivel">Nível 5</span>
+                    </label>
+                    <input type="range" id="nivel-ansiedade" min="1" max="10" value="5" oninput="atualizarBadgeNivel(this.value)">
+                    <div class="escala-legenda">
+                        <span>1 (Leve / Tranquilo)</span>
+                        <span>5 (Moderado)</span>
+                        <span>10 (Muito Intenso)</span>
+                    </div>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="emocao-principal">Como você descreveria sua emoção predominante?</label>
+                    <select id="emocao-principal" required>
+                        <option value="" disabled selected>Selecione uma emoção...</option>
+                        <option value="Ansiosa(o)">Ansiosa(o)</option>
+                        <option value="Sobrecarregada(o)">Sobrecarregada(o)</option>
+                        <option value="Preocupada(o)">Preocupada(o)</option>
+                        <option value="Inquieta(o)">Inquieta(o)</option>
+                        <option value="Cansada(o)">Cansada(o)</option>
+                        <option value="Calma(o)">Calma(o) / Tranquila(o)</option>
+                        <option value="Aliviada(o)">Aliviada(o)</option>
+                    </select>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="anotacao-checkin">Anotação pessoal ou desabafo (opcional):</label>
+                    <textarea id="anotacao-checkin" placeholder="Escreva o que está em sua mente agora... Este espaço é só seu." maxlength="500" rows="3"></textarea>
+                </div>
+
+                <button type="submit" id="btn-salvar-checkin" class="btn-salvar-checkin">
+                    Salvar Check-in
+                </button>
+            </form>
+
+            <div id="feedback-checkin" class="feedback-checkin" style="display: none;"></div>
+        </section>
+
+        <!-- Seção: Quiz de Interesses e Recursos de Acolhimento -->
         <section class="secao-quiz-interesses">
             <h2 class="subtitulo-interesses">O que você procura hoje?</h2>
             <p class="descricao-interesses">
-                Filtre por categoria rápida ou pesquise por palavras-chave:
+                Selecione uma categoria de acolhimento abaixo ou faça uma busca por palavra-chave para encontrar recursos recomendados:
             </p>
 
-            <!-- Botões de Categorias -->
-            <div class="categorias-container">
-                <button type="button" class="btn-categoria ativo" onclick="filtrarPorCategoria('todas', this)">✨ Todos</button>
-                <button type="button" class="btn-categoria" onclick="filtrarPorCategoria('Técnicas e Práticas', this)">🌿 Respiração e Técnicas</button>
-                <button type="button" class="btn-categoria" onclick="filtrarPorCategoria('Filmes e Séries', this)">🎬 Filmes e Séries</button>
-                <button type="button" class="btn-categoria" onclick="filtrarPorCategoria('Livros e Leituras', this)">📖 Livros</button>
-                <button type="button" class="btn-categoria" onclick="filtrarPorCategoria('Entendendo a Ansiedade', this)">🧠 Entendendo a Ansiedade</button>
-                <button type="button" class="btn-categoria" onclick="filtrarPorCategoria('Apoio e Ajuda', this)">💛 Apoio e CVV</button>
+            <div class="categorias-filtros" id="container-categorias">
+                <!-- Categorias carregadas dinamicamente do banco de dados via API Spring Boot -->
             </div>
 
-            <!-- Barra de Pesquisa de Texto -->
             <div class="barra-pesquisa-container">
-                <input type="text" placeholder="Ou digite palavras-chave (ex: filme, respiração, 188...)" id="campo-pesquisa">
-                <button type="button" onclick="pesquisar()">Buscar</button>
+                <input type="text" placeholder="Digite uma palavra-chave (ex: respiração, filme, livro...)" id="campo-pesquisa">
+                <button onclick="pesquisar()">Filtrar</button>
             </div>
         </section>
+
+        <!-- Resultados das Recomendações vindas do Banco de Dados -->
+        <section class="resultados-pesquisa" id="resultados-pesquisa">
+            <!-- Conteúdo carregado em tempo real da API -->
+        </section>
+
+        <!-- Aviso ético e de acolhimento -->
+        <section class="aviso-profissional">
+            <p>
+                💛 <strong>Aviso importante:</strong> Este site tem caráter exclusivamente informativo e de acolhimento. Ele não diagnostica doenças e <strong>não substitui a orientação médica ou psicológica profissional</strong>. Em caso de crise ou sofrimento intenso, entre em contato gratuitamente com o <strong>CVV pelo telefone 188</strong> ou procure uma unidade de saúde.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 / 2026 - Desenvolvido por Milene Rodrigues - Todos os direitos reservados</p>
+        <p>
+            <a href="https://github.com/Milene-Arla">GitHub</a>
+        </p>
+    </footer>
+    <script src="/dados.js"></script>
+    <script src="/app.js"></script>
+</body>
+
+</html>

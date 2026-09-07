@@ -1,52 +1,627 @@
-/* Container dos botões de categorias */
-.categorias-container {
+/* Importa a fonte Chakra Petch do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Reset e box-sizing global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estiliza o corpo da página */
+body {
+    font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
+    background-color: #F8F6F2; /* Cor de fundo clara para bem-estar */
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: flex-start; /* Permite rolagem natural e visual limpo */
+    min-height: 100vh; /* Preenche a altura total da viewport com expansão */
+    margin: 0;
+    padding: 2rem 1rem 4rem 1rem;
+    background-image: url('imgs/siteansiedade.jpg'); /* Imagem de fundo para o tema de tecnologia e bem-estar */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajusta o tamanho da imagem para caber na área disponível */
+    background-attachment: fixed; /* Mantém a imagem fixa na tela ao rolar */
+}
+
+/* Estiliza a container principal */
+.container {
+    width: 100%;
+    max-width: 800px; /* Largura máxima proporcional */
+    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estiliza os títulos h1 */
+h1 {
+    font-size: 2.5rem; /* Tamanho da fonte */
+    color: #52796F; /* Cor do texto em tom verde escuro */
+    text-align: center; /* Alinha o texto ao centro */
+    letter-spacing: 0.3rem; /* Espaçamento entre letras */
+    margin-bottom: 2rem;
+    max-width: 900px;
+    line-height: 1.2;
+}
+
+/* Estiliza as seções da página */
+section {
+    display: flex; /* Usa Flexbox para layout */
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin-bottom: 2rem; /* Espaçamento abaixo de cada seção */
+    background-color: #FDFBF7; /* Cor de fundo branca para contraste */
+    padding: 2rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Estiliza os inputs dentro das seções da barra de pesquisa */
+.barra-pesquisa-container input {
+    width: 100%;
+    border: 1px solid #52796F;
+    padding: 0.85rem 1rem;
+    border-radius: 0.6rem;
+    color: #52796F;
+    font-size: 1rem;
+    outline: none;
+    background-color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.barra-pesquisa-container input:focus {
+    border-color: #4F6D7A;
+    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.2);
+}
+
+/* Filtros por Categorias Dinâmicas */
+.categorias-filtros {
     display: flex;
     flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
-    gap: 0.5rem;
+    margin-top: 1rem;
     width: 100%;
-    margin-top: 0.5rem;
 }
 
 .btn-categoria {
     background-color: #EEE9E3;
-    color: #2F3E46;
-    border: 1px solid #D1C7BD;
-    border-radius: 20px;
+    color: #52796F;
+    border: 1px solid #D8D2C9;
     padding: 0.4rem 0.9rem;
+    border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    font-family: inherit;
     transition: all 0.2s ease;
+    font-family: "Chakra Petch", sans-serif;
 }
 
 .btn-categoria:hover {
     background-color: #52796F;
     color: #FFFFFF;
     border-color: #52796F;
+    transform: translateY(-1px);
 }
 
 .btn-categoria.ativo {
     background-color: #52796F;
     color: #FFFFFF;
-    border-color: #354F52;
+    border-color: #52796F;
     box-shadow: 0 2px 6px rgba(82, 121, 111, 0.3);
 }
 
-/* Badge da Categoria dentro do card */
-.header-resultado {
+/* Tag de benefício da recomendação */
+.tag-beneficio {
+    display: inline-block;
+    background-color: #D8E2DC;
+    color: #2F3E46;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 0.4rem;
+}
+
+/* Tag de categoria no card */
+.tag-categoria {
+    display: inline-block;
+    background-color: #CDB4DB;
+    color: #2F3E46;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 4px;
     margin-bottom: 0.4rem;
 }
 
-.badge-categoria {
+/* Mensagem de carregamento e estado vazio */
+.mensagem-status {
+    text-align: center;
+    padding: 2rem;
+    color: #52796F;
+    font-size: 1.1rem;
+}
+
+/* Estiliza os botões dentro das seções */
+.barra-pesquisa-container button {
+    padding: 0.85rem 1.8rem;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: #52796F;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.barra-pesquisa-container button:hover {
+    background-color: #4F6D7A;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Estiliza a caixa de resultados da pesquisa */
+.resultados-pesquisa {
+    width: 100%;
+    max-width: 800px;
+    height: 48vh; /* Altura com rolagem suave */
+    overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+    margin-top: 0.5rem; /* Espaçamento acima da caixa de resultados */
+    padding: 1.5rem; /* Espaçamento interno */
+    border-radius: 0.6rem; /* Borda arredondada */
+    background: #FDFBF7; /* Cor de fundo dos itens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+
+/* Barra de rolagem personalizada e suave */
+.resultados-pesquisa::-webkit-scrollbar {
+    width: 8px;
+}
+
+.resultados-pesquisa::-webkit-scrollbar-track {
+    background: #F8F6F2;
+    border-radius: 4px;
+}
+
+.resultados-pesquisa::-webkit-scrollbar-thumb {
+    background: #CDB4DB;
+    border-radius: 4px;
+}
+
+.resultados-pesquisa::-webkit-scrollbar-thumb:hover {
+    background: #52796F;
+}
+
+/* Estiliza cada item de resultado */
+.item-resultado {
+    background: #EEE9E3; /* Cor de fundo leve para os itens */
+    border-radius: 0.6rem; /* Borda arredondada */
+    padding: 1.2rem; /* Espaçamento interno */
+    margin-bottom: 1.2rem; /* Espaçamento abaixo dos itens */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Sombra leve */
+    text-align: left;
+    width: 100%;
+}
+
+.item-resultado:last-child {
+    margin-bottom: 0;
+}
+
+/* Estiliza os títulos dentro dos itens de resultado */
+.item-resultado h2 {
+    font-size: 1.4rem; /* Tamanho da fonte */
+    color: #52796F; /* Cor do texto */
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.item-resultado h2 a {
+    color: #52796F;
+    text-decoration: none;
+}
+
+.item-resultado h2 a:hover {
+    text-decoration: underline;
+}
+
+/* Estiliza os links dentro dos itens de resultado */
+.item-resultado a {
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    color: #7b5993; /* Tom de roxo mais legível */
+    font-weight: 600;
     display: inline-block;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+/* Estiliza os links quando são passados o mouse sobre */
+.item-resultado a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    color: #52796F;
+}
+
+/* Estiliza a descrição meta dentro dos itens de resultado */
+.descricao-meta {
+    color: #444444; /* Cor do texto mais nítida */
+    margin: 0.5rem 0; /* Margem acima e abaixo */
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Estiliza o rodapé da página */
+footer {
+    background-color: transparent;
+    padding: 2rem 1rem 1rem 1rem; /* Espaçamento interno */
+    text-align: center; /* Alinha o texto ao centro */
+    width: 100%; /* Largura total do rodapé */
+    margin-top: auto;
+    font-size: 0.95rem;
+}
+
+/* Estiliza os parágrafos dentro do rodapé */
+footer p {
+    background-color: #CDB4DB; /* Cor de fundo para destacar o texto */
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #333333; /* Cor do texto */
+    margin: 0.3rem auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p a {
+    color: #2F3E46;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 4px;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
+
+/* Estiliza imagens explicativas */
+.imagem-explicativa,
+img {
+    width: 150px; /* Define a largura de todas as imagens para 150px */
+    height: auto; /* Mantém a altura proporcional */
+    border-radius: 0.6rem; /* Adiciona borda arredondada */
+    margin: 0.5rem 0;
+}
+
+/* Seção do Quiz de Interesses ("O que você procura hoje?") */
+.secao-quiz-interesses {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: #FDFBF7;
+    border-radius: 0.6rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.subtitulo-interesses {
+    font-size: 1.5rem;
+    color: #52796F;
+    font-weight: 700;
+    margin: 0;
+}
+
+.descricao-interesses {
+    font-size: 0.95rem;
+    color: #2F3E46;
+    margin: 0;
+    max-width: 650px;
+    line-height: 1.4;
+}
+
+.barra-pesquisa-container {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.barra-pesquisa-container input {
+    flex: 1;
+}
+
+/* Aviso Ético e Profissional */
+.aviso-profissional {
+    width: 100%;
+    max-width: 800px;
+    background-color: #EEE9E3;
+    border-left: 4px solid #52796F;
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.aviso-profissional p {
+    font-size: 0.85rem;
+    color: #2F3E46;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Link de acesso estilizado no card */
+.link-recurso {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: #52796F;
+}
+
+.link-recurso:hover {
+    color: #354F52;
+}
+
+/* Estiliza a seção do quiz */
+#quiz-section {
+    padding: 20px;
+    width: 100%;
+}
+
+fieldset {
+    border: 1px solid #52796F;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 0.4rem;
+}
+
+legend {
+    font-weight: bold;
+    color: #52796F;
+    padding: 0 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilos da Seção de Check-in (Funcionalidade de Cadastro da AC 1) */
+.secao-checkin {
+    width: 100%;
+    max-width: 800px;
+    background-color: #FDFBF7;
+    border-radius: 0.8rem;
+    padding: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid #52796F;
+    align-items: stretch;
+}
+
+.subtitulo-checkin {
+    font-size: 1.45rem;
+    color: #52796F;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.descricao-checkin {
+    font-size: 0.95rem;
+    color: #2F3E46;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.form-checkin {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+    width: 100%;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo-grupo label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2F3E46;
+    margin-bottom: 0.2rem;
+}
+
+.codigo-input-wrapper {
+    display: flex;
+    gap: 0.6rem;
+    width: 100%;
+}
+
+.codigo-input-wrapper input {
+    flex: 1;
+    font-family: monospace;
+    letter-spacing: 0.08rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    border: 1px solid #52796F;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+    background-color: #FFFFFF;
+    color: #2F3E46;
+}
+
+.form-checkin input[type="range"] {
+    width: 100%;
+    accent-color: #52796F;
+    cursor: pointer;
+    margin: 0.5rem 0 0.2rem 0;
+}
+
+.btn-gerar-codigo {
+    background-color: #84A98C;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-gerar-codigo:hover {
+    background-color: #52796F;
+    transform: translateY(-1px);
+}
+
+.dica-campo {
+    font-size: 0.8rem;
+    color: #6C757D;
+}
+
+.badge-nivel {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
     background-color: #52796F;
     color: #FFFFFF;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: bold;
-    padding: 0.2rem 0.6rem;
-    border-radius: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
+    margin-left: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.escala-legenda {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #52796F;
+    margin-top: 0.2rem;
+}
+
+.form-checkin select,
+.form-checkin textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #52796F;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+    background-color: #FFFFFF;
+    color: #2F3E46;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-checkin select:focus,
+.form-checkin textarea:focus,
+.form-checkin input:focus {
+    outline: none;
+    border-color: #354F52;
+    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.25);
+}
+
+.form-checkin textarea {
+    resize: vertical;
+}
+
+.btn-salvar-checkin {
+    background-color: #52796F;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(82, 121, 111, 0.25);
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.btn-salvar-checkin:hover {
+    background-color: #354F52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(53, 79, 82, 0.35);
+}
+
+.feedback-checkin {
+    margin-top: 1.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: left;
+    animation: fadeIn 0.3s ease;
+}
+
+.feedback-sucesso {
+    background-color: #E8F5E9;
+    border-left: 5px solid #2E7D32;
+    color: #1B5E20;
+}
+
+.feedback-erro {
+    background-color: #FFEBEE;
+    border-left: 5px solid #C62828;
+    color: #B71C1C;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.7rem; /* Tamanho da fonte em telas menores */
+        letter-spacing: 0.15rem; /* Espaçamento entre letras em telas menores */
+    }
+
+    body {
+        padding: 1.5rem 0.8rem;
+    }
+
+    section {
+        padding: 1.2rem;
+    }
+
+    .codigo-input-wrapper {
+        flex-direction: column;
+    }
+
+    .barra-pesquisa-container {
+        flex-direction: column;
+    }
+
+    .barra-pesquisa-container button {
+        width: 100%;
+    }
+
+    .resultados-pesquisa {
+        height: 45vh;
+        padding: 1rem;
+    }
+
+    .item-resultado h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsividade para celulares bem pequenos */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.3rem;
+        letter-spacing: 0.1rem;
+    }
 }
