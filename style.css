@@ -1,457 +1,52 @@
-/* Importa a fonte Chakra Petch do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-/* Reset e box-sizing global */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Estiliza o corpo da página */
-body {
-    font-family: "Chakra Petch", sans-serif;
-    background-color: #F8F6F2;
+/* Container dos botões de categorias */
+.categorias-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    margin: 0;
-    padding: 2rem 1rem 4rem 1rem;
-    background-image: url('imgs/siteansiedade.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-/* Estiliza o container principal */
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Estiliza os títulos h1 */
-h1 {
-    font-size: 2.5rem;
-    color: #52796F;
-    text-align: center;
-    letter-spacing: 0.3rem;
-    margin-bottom: 2rem;
-    max-width: 900px;
-    line-height: 1.2;
-}
-
-/* Estiliza as seções da página */
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-    background-color: #FDFBF7;
-    padding: 2rem;
-    border-radius: 0.6rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-}
-
-/* Seção de Busca / Quiz */
-.secao-quiz-interesses {
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background-color: #FDFBF7;
-    border-radius: 0.6rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-.subtitulo-interesses {
-    font-size: 1.5rem;
-    color: #52796F;
-    font-weight: 700;
-    margin: 0;
-}
-
-.descricao-interesses {
-    font-size: 0.95rem;
-    color: #2F3E46;
-    margin: 0;
-    max-width: 650px;
-    line-height: 1.4;
-}
-
-.barra-pesquisa-container {
-    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
     width: 100%;
     margin-top: 0.5rem;
 }
 
-.barra-pesquisa-container input {
-    flex: 1;
-    width: 100%;
-    border: 1px solid #52796F;
-    padding: 0.85rem 1rem;
-    border-radius: 0.6rem;
-    color: #52796F;
-    font-size: 1rem;
-    outline: none;
-    background-color: #FFFFFF;
-}
-
-.barra-pesquisa-container input:focus {
-    border-color: #4F6D7A;
-    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.2);
-}
-
-.barra-pesquisa-container button {
-    padding: 0.85rem 1.8rem;
-    border: none;
-    border-radius: 0.6rem;
-    background-color: #52796F;
-    color: #ffffff;
-    font-size: 1rem;
-    cursor: pointer;
-    font-family: "Chakra Petch", sans-serif;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.barra-pesquisa-container button:hover {
-    background-color: #4F6D7A;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px);
-}
-
-/* Caixa de Resultados */
-.resultados-pesquisa {
-    width: 100%;
-    max-width: 800px;
-    height: 48vh;
-    overflow-y: auto;
-    margin-top: 0.5rem;
-    padding: 1.5rem;
-    border-radius: 0.6rem;
-    background: #FDFBF7;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.item-resultado {
-    background: #EEE9E3;
-    border-radius: 0.6rem;
-    padding: 1.2rem;
-    margin-bottom: 1.2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    text-align: left;
-    width: 100%;
-}
-
-.item-resultado:last-child {
-    margin-bottom: 0;
-}
-
-.item-resultado h2 {
-    font-size: 1.4rem;
-    color: #52796F;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.item-resultado h2 a {
-    color: #52796F;
-    text-decoration: none;
-}
-
-.item-resultado a {
-    text-decoration: none;
-    color: #7b5993;
-    font-weight: 600;
-    display: inline-block;
-    margin-top: 0.5rem;
-}
-
-.item-resultado a:hover {
-    text-decoration: underline;
-    color: #52796F;
-}
-
-.descricao-meta {
-    color: #444444;
-    margin: 0.5rem 0;
-    line-height: 1.5;
-    font-size: 0.95rem;
-}
-
-/* Seção de Check-in (AC 1) */
-.secao-checkin {
-    width: 100%;
-    max-width: 800px;
-    background-color: #FDFBF7;
-    border-radius: 0.8rem;
-    padding: 1.8rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-top: 5px solid #52796F;
-    align-items: stretch;
-}
-
-.subtitulo-checkin {
-    font-size: 1.45rem;
-    color: #52796F;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.descricao-checkin {
-    font-size: 0.95rem;
-    color: #2F3E46;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.form-checkin {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    text-align: left;
-    width: 100%;
-}
-
-.campo-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.campo-grupo label {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #2F3E46;
-    margin-bottom: 0.2rem;
-}
-
-.codigo-input-wrapper {
-    display: flex;
-    gap: 0.6rem;
-    width: 100%;
-}
-
-.codigo-input-wrapper input {
-    flex: 1;
-    font-family: monospace;
-    letter-spacing: 0.08rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 0.75rem 1rem;
-    border: 1px solid #52796F;
-    border-radius: 0.4rem;
-    font-size: 0.95rem;
-    background-color: #FFFFFF;
-    color: #2F3E46;
-}
-
-.form-checkin input[type="range"] {
-    width: 100%;
-    accent-color: #52796F;
-    cursor: pointer;
-    margin: 0.5rem 0 0.2rem 0;
-}
-
-.btn-gerar-codigo {
-    background-color: #84A98C;
-    color: #FFFFFF;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 0.4rem;
-    font-size: 0.85rem;
-    font-weight: bold;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.btn-gerar-codigo:hover {
-    background-color: #52796F;
-    transform: translateY(-1px);
-}
-
-.dica-campo {
-    font-size: 0.8rem;
-    color: #6C757D;
-}
-
-.badge-nivel {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    background-color: #52796F;
-    color: #FFFFFF;
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-left: 0.5rem;
-}
-
-.escala-legenda {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: #52796F;
-    margin-top: 0.2rem;
-}
-
-.form-checkin select,
-.form-checkin textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #52796F;
-    border-radius: 0.4rem;
-    font-size: 0.95rem;
-    background-color: #FFFFFF;
-    color: #2F3E46;
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
-.form-checkin select:focus,
-.form-checkin textarea:focus,
-.codigo-input-wrapper input:focus {
-    outline: none;
-    border-color: #354F52;
-    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.25);
-}
-
-.form-checkin textarea {
-    resize: vertical;
-}
-
-.btn-salvar-checkin {
-    background-color: #52796F;
-    color: #FFFFFF;
-    border: none;
-    padding: 0.9rem 1.5rem;
-    border-radius: 0.5rem;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(82, 121, 111, 0.25);
-    margin-top: 0.5rem;
-    width: 100%;
-}
-
-.btn-salvar-checkin:hover {
-    background-color: #354F52;
-    transform: translateY(-2px);
-}
-
-.feedback-checkin {
-    margin-top: 1.2rem;
-    padding: 1rem 1.2rem;
-    border-radius: 0.5rem;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    text-align: left;
-}
-
-.feedback-sucesso {
-    background-color: #E8F5E9;
-    border-left: 5px solid #2E7D32;
-    color: #1B5E20;
-}
-
-.feedback-erro {
-    background-color: #FFEBEE;
-    border-left: 5px solid #C62828;
-    color: #B71C1C;
-}
-
-/* Aviso Ético */
-.aviso-profissional {
-    width: 100%;
-    max-width: 800px;
+.btn-categoria {
     background-color: #EEE9E3;
-    border-left: 4px solid #52796F;
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-    margin-top: 1rem;
-    text-align: left;
-}
-
-.aviso-profissional p {
+    color: #2F3E46;
+    border: 1px solid #D1C7BD;
+    border-radius: 20px;
+    padding: 0.4rem 0.9rem;
     font-size: 0.85rem;
-    color: #2F3E46;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* Rodapé */
-footer {
-    background-color: transparent;
-    padding: 2rem 1rem 1rem 1rem;
-    text-align: center;
-    width: 100%;
-    margin-top: auto;
-    font-size: 0.95rem;
-}
-
-footer p {
-    background-color: #CDB4DB;
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 6px;
-    color: #333333;
-    margin: 0.3rem auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-footer p a {
-    color: #2F3E46;
-    text-decoration: none;
     font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.7rem;
-        letter-spacing: 0.15rem;
-    }
+.btn-categoria:hover {
+    background-color: #52796F;
+    color: #FFFFFF;
+    border-color: #52796F;
+}
 
-    body {
-        padding: 1.5rem 0.8rem;
-    }
+.btn-categoria.ativo {
+    background-color: #52796F;
+    color: #FFFFFF;
+    border-color: #354F52;
+    box-shadow: 0 2px 6px rgba(82, 121, 111, 0.3);
+}
 
-    section {
-        padding: 1.2rem;
-    }
+/* Badge da Categoria dentro do card */
+.header-resultado {
+    margin-bottom: 0.4rem;
+}
 
-    .codigo-input-wrapper {
-        flex-direction: column;
-    }
-
-    .barra-pesquisa-container {
-        flex-direction: column;
-    }
-
-    .barra-pesquisa-container button {
-        width: 100%;
-    }
-
-    .resultados-pesquisa {
-        height: 45vh;
-        padding: 1rem;
-    }
+.badge-categoria {
+    display: inline-block;
+    background-color: #52796F;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
 }
