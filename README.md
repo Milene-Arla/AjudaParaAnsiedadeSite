@@ -1,28 +1,22 @@
 # Espaço de Apoio para Ansiedade: Encontrando Calma e Conforto
 
-Este projeto foi desenvolvido durante a **Imersão Dev com Google Gemini - Alura**. O site tem como objetivo oferecer recursos e informações sobre ansiedade, ajudando os usuários a encontrarem apoio e técnicas de bem-estar.
+Este projeto foi desenvolvido durante a **Imersão Dev com Google Gemini - Alura** e evoluído para integração Full Stack com persistência em banco de dados. O site tem como objetivo oferecer recursos e informações sobre ansiedade, além de permitir o registro seguro de sentimentos.
 
-## Funcionalidades
+## 🚀 Funcionalidades
 
-- **Pesquisa Personalizada:** Um campo de busca dedicado a ajudar os visitantes a encontrar informações específicas sobre temas relacionados à ansiedade.
-- **Conteúdo Informativo:** Artigos e vídeos sobre ansiedade, bem como análises de filmes que abordam a temática de saúde mental, como *Divertida Mente*.
-- **Rodapé Personalizado:** Links para o LinkedIn, GitHub e Email do autor.
-- **Design Responsivo:** Layout otimizado para diferentes tamanhos de tela, incluindo dispositivos móveis.
+- **🌿 Check-in de Sentimentos (AC 1):** Cadastro de registros emocionais anônimos com código de acompanhamento, nível de ansiedade (1 a 10) e anotação pessoal, salvos via API REST no banco de dados.
+- **🔍 Pesquisa Personalizada:** Um campo de busca com suporte à tecla Enter para encontrar conteúdos específicos sobre bem-estar, respiração e livros.
+- **📚 Conteúdo Informativo:** Artigos, técnicas de respiração e indicações culturais voltadas à saúde mental.
+- **📱 Design Responsivo:** Interface acolhedora e otimizada para computadores e dispositivos móveis.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-- **HTML** para a estrutura do site.
-- **CSS** para estilização e responsividade.
-- **JavaScript** para interatividade e manipulação de dados no site.
-- **Vercel** para o deploy do site, garantindo uma publicação rápida e eficiente.
+- **HTML5** para a estrutura semântica.
+- **CSS3** para estilização e responsividade.
+- **JavaScript** para manipulação do DOM e requisições HTTP (Fetch API).
+- **Kotlin & Spring Boot** para a criação da API REST.
+- **Microsoft SQL Server** para persistência dos dados.
+- **Vercel** para deploy do front-end.
 
-## Como Rodar o Projeto
-
-## 1. Clone este repositório:
-git clone https://github.com/Milene-Arla/AjudaParaAnsiedadeSite.git
-## 2. Navegue até a pasta do projeto:
-cd AjudaParaAnsiedadeSite
-## 3. Abra o arquivo index.html no navegador.
-
-## Link do site:
-[Site do Projeto](https://ajuda-para-ansiedade-site.vercel.app/)
+## 🌐 Link do Site
+[Site do Projeto na Vercel](https://ajuda-para-ansiedade-site.vercel.app/)

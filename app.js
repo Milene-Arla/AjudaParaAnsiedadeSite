@@ -16,33 +16,31 @@ function gerarHTMLResultado(dado) {
 
 // Função para realizar a pesquisa
 function pesquisar() { 
-  // Obtém a seção HTML onde os resultados serão exibidos
-  let section = document.getElementById("resultados-pesquisa"); 
+  const section = document.getElementById("resultados-pesquisa"); 
+  const inputPesquisa = document.getElementById("campo-pesquisa");
+  if (!section || !inputPesquisa) return;
 
-  let campoPesquisa = document.getElementById("campo-pesquisa").value.toLowerCase();
+  const campoPesquisa = inputPesquisa.value.trim().toLowerCase();
   let resultados = "";
 
-  // Função auxiliar para adicionar todos os dados ao resultado
   function adicionarTodosResultados() {
     for (let dado of dados) {
       resultados += gerarHTMLResultado(dado);
     }
   }
 
-  // Se campoPesquisa for uma string vazia, mostra todos os dados
   if (!campoPesquisa) {
     adicionarTodosResultados();
   } else {
-    // Itera sobre cada dado da pesquisa e constrói o HTML do resultado
-    for (let dado of dados) {
-      let titulo = dado.titulo.toLowerCase();
-      let descricao = dado.descricao.toLowerCase();
-      let tags = dado.tags.toLowerCase();
+    const palavrasPesquisa = campoPesquisa.split(" ");
 
-      // Verifica se alguma das palavras da pesquisa está presente em algum dos campos
-      let palavrasPesquisa = campoPesquisa.split(' ');
-      let encontrouPalavra = palavrasPesquisa.some(palavra => 
-        titulo.includes(palavra) || descricao.includes(palavra) || tags.includes(palavra)
+    for (let dado of dados) {
+      const titulo = (dado.titulo || "").toLowerCase();
+      const descricao = (dado.descricao || "").toLowerCase();
+      const tags = (dado.tags || "").toLowerCase();
+
+      const encontrouPalavra = palavrasPesquisa.some(palavra => 
+        palavra && (titulo.includes(palavra) || descricao.includes(palavra) || tags.includes(palavra))
       );
 
       if (encontrouPalavra) {
@@ -50,17 +48,34 @@ function pesquisar() {
       }
     }
 
-    // Se nenhum resultado for encontrado, mostra uma mensagem informativa
     if (!resultados) {
-      adicionarTodosResultados();
+      resultados = `
+        <div class="item-resultado" style="text-align: center; padding: 2rem;">
+          <h2 style="color: #52796F; font-size: 1.2rem;">Nenhum recurso encontrado para "${inputPesquisa.value}"</h2>
+          <p class="descricao-meta" style="margin-top: 0.5rem;">
+            Tente buscar por termos como: <strong>respiração, mindfulness, livros, filmes, acolhimento</strong> ou limpe a busca para ver todos os conteúdos.
+          </p>
+        </div>
+      `;
     }
   }
 
-  // Atribui o HTML construído à seção de resultados
   section.innerHTML = resultados;
 }
 
-// Funções do Check-in de Sentimentos (AC 1 - Cadastro / INSERT)
+// Permite buscar apertando 'Enter'
+document.addEventListener("DOMContentLoaded", () => {
+  const inputPesquisa = document.getElementById("campo-pesquisa");
+  if (inputPesquisa) {
+    inputPesquisa.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        pesquisar();
+      }
+    });
+  }
+});
+
+// Funções do Check-in de Sentimentos (AC 1)
 function gerarCodigoAleatorio() {
   const prefixos = ["CALMA", "RESPIRA", "PAZ", "SERENA", "FOCO", "ACOLHE"];
   const prefixo = prefixos[Math.floor(Math.random() * prefixos.length)];
@@ -110,12 +125,16 @@ async function salvarCheckin(event) {
   const anotacao = textareaAnotacao?.value.trim() || null;
 
   if (!codigo || !emocao) {
-    alert("Por favor, preencha o código de acompanhamento e selecione sua emoção.");
+    if (divFeedback) {
+      divFeedback.className = "feedback-checkin feedback-erro";
+      divFeedback.innerHTML = `<strong>Atenção:</strong> Por favor, preencha o código de acompanhamento e selecione sua emoção predominante.`;
+      divFeedback.style.display = "block";
+    }
     return;
   }
 
   btnSalvar.disabled = true;
-  btnSalvar.innerText = "Enviando...";
+  btnSalvar.innerText = "Salvando registro...";
 
   const payload = {
     codigoAcompanhamento: codigo,
@@ -153,8 +172,9 @@ async function salvarCheckin(event) {
 
     divFeedback.className = "feedback-checkin feedback-erro";
     divFeedback.innerHTML = `
-      <strong>Não foi possível salvar seu registro no momento.</strong><br>
-      Por favor, tente novamente em instantes. Lembre-se: respire fundo, você não está só.
+      <strong>Não foi possível conectar com a API no momento.</strong><br>
+      Certifique-se de que o backend Spring Boot está executando na porta 8080 (<code>http://localhost:8080</code>).<br>
+      <small>Lembre-se: respire fundo, você não está só.</small>
     `;
     divFeedback.style.display = "block";
   } finally {

@@ -69,14 +69,21 @@
             <div id="feedback-checkin" class="feedback-checkin" style="display: none;"></div>
         </section>
 
-        <section>
-            
-             <input type="text" placeholder="Digite a palavra-chave" id="campo-pesquisa">
-             <button onclick="pesquisar()">Filtrar</button>
-             
-       </section>
+        <!-- Seção de Busca com container alinhado -->
+        <section class="secao-quiz-interesses">
+            <h2 class="subtitulo-interesses">O que você procura hoje?</h2>
+            <p class="descricao-interesses">
+                Pesquise por palavras-chave como respiração, filme, livro ou recursos de acolhimento:
+            </p>
+            <div class="barra-pesquisa-container">
+                <input type="text" placeholder="Digite uma palavra-chave (ex: respiração, filme, livro...)" id="campo-pesquisa">
+                <button onclick="pesquisar()">Filtrar</button>
+            </div>
+        </section>
 
+        <!-- Resultados das Recomendações -->
         <section class="resultados-pesquisa" id="resultados-pesquisa">
+            <!-- Os cards são gerados dinamicamente via JS ao pesquisar, e inicialmente carregados aqui -->
             <div class="item-resultado">
                 <h2>O que é Ansiedade</h2>
                 <p class="descricao-meta">
@@ -110,7 +117,7 @@
             </div>
 
             <div class="item-resultado">
-                <h2>Recursos e Ajuda</h2>
+                <h2>Recursos e Ajuda (CVV)</h2>
                 <p class="descricao-meta">
                     Se você ou alguém que você conhece está lidando com ansiedade, diversos recursos estão disponíveis para oferecer suporte, incluindo linhas de apoio emocional, terapia online e informações sobre saúde mental. Procurar ajuda é um passo importante para o tratamento.
                 </p>
@@ -124,6 +131,15 @@
                 </p>
                 <a href="https://www.otempo.com.br/entretenimento/7-filmes-e-series-que-abordam-sobre-saude-mental-1.3288071" target="_blank">Mais informações</a>
             </div>
+
+            <div class="item-resultado">
+                <h2>Conheça a Ansiedade de Divertida Mente 2</h2>
+                <p class="descricao-meta">
+                    O personagem 'Ansiedade' reflete a natureza intrincada e acelerada da ansiedade de forma amigável e expressiva. Sua presença ajuda a normalizar e desmistificar o que sentimos quando lidamos com excesso de pensamentos e preocupação com o futuro.
+                </p>
+                <a href="https://www.imdb.com/title/tt2096673/" target="_blank">Mais informações</a>
+            </div>
+
             <div class="item-resultado">
                 <h2>Histórias de Superação: Vivendo com Ansiedade</h2>
                 <p class="descricao-meta">
@@ -131,6 +147,7 @@
                 </p>
                 <a href="https://www.clinicadamente.com/category/testemunhos-de-historias-de-ansiedade/" target="_blank">Mais informações</a>
             </div>
+
             <div class="item-resultado">
                 <h2>Infográfico: Entendendo a Ansiedade</h2>
                 <p class="descricao-meta">
@@ -138,38 +155,40 @@
                 </p>
                 <a href="https://blog.ibmec.br/wp-content/uploads/2022/04/Infografico-Ansiedade_Ibmec.pdf" target="_blank">Mais informações</a>
             </div>
+
             <div class="item-resultado">
                 <h2>Workshop Online sobre Gestão da Ansiedade</h2>
                 <p class="descricao-meta">
-                    Descubra como gerenciar a ansiedade com eficácia através de um workshop online abrangente. Este evento virtual é liderado por especialistas em saúde mental e oferece uma imersão em técnicas práticas e acessíveis, incluindo exercícios de respiração, técnicas de relaxamento e estratégias cognitivas. O workshop é projetado para fornecer ferramentas valiosas que podem ser aplicadas no cotidiano para reduzir o estresse e promover um bem-estar duradouro. Participe para aprender em um ambiente de apoio e desenvolva habilidades que podem transformar sua abordagem à gestão da ansiedade.
+                    Descubra como gerenciar a ansiedade com eficácia através de um workshop online abrangente liderado por especialistas em saúde mental, com exercícios práticos de relaxamento e estratégias cognitivas.
                 </p>
                 <a href="https://www.soloadventures.org/post/workshop-online-gest%C3%A3o-de-stress-e-ansiedade-na-era-digital-inscri%C3%A7%C3%B5es-abertas" target="_blank">Mais informações</a>
             </div>
+
             <div class="item-resultado">
                 <h2>Livros Recomendados sobre Ansiedade</h2>
                 <p class="descricao-meta">
-                    Explore uma seleção cuidadosamente curada de livros que oferecem uma compreensão profunda da ansiedade. Esses livros abrangem desde estratégias práticas para gerenciar a ansiedade no dia a dia até insights teóricos e experiências pessoais. Cada obra é uma ferramenta valiosa para quem busca apoio, conhecimento e maneiras de enfrentar a ansiedade com mais confiança e compreensão.
+                    Explore uma seleção cuidadosamente curada de livros que oferecem uma compreensão profunda da ansiedade, com estratégias práticas para o dia a dia e reflexões valiosas.
                 </p>
                 <a href="https://revistagalileu.globo.com/Cultura/Livros/noticia/2022/03/ansiedade-7-livros-para-entender-melhor-o-transtorno-de-saude-mental.html" target="_blank">Mais informações</a>
             </div>
+        </section>
 
-
-            <h2>Conheça o Personagem "Ansiedade" de Divertida Mente 2</h2>
-            <p><strong>Sobre o Personagem:</strong></p>
-            <p><strong>Descrição:</strong> O personagem "Ansiedade" é visualmente distinto e expressivo, refletindo a natureza intrincada da ansiedade. Sua presença é projetada para ajudar a personificar e explicar o que muitas pessoas sentem quando lidam com esse transtorno.</p>
-            <p><strong>Função no Filme:</strong> "Ansiedade" ajuda a ilustrar como essa emoção pode interagir com outras emoções e influenciar o comportamento de Riley. Ele oferece uma visão prática e compreensiva dos sentimentos que acompanham a ansiedade, permitindo aos espectadores uma melhor compreensão de como isso pode afetar a vida cotidiana.</p>
-            <p><strong>Impacto e Importância:</strong> Ao apresentar "Ansiedade" de maneira amigável e compreensível, o filme ajuda a desmistificar e normalizar a experiência da ansiedade. Isso promove uma maior empatia e entendimento para aqueles que enfrentam essa emoção.</p>
-            <p>Para saber mais sobre o filme, visite a página oficial: <a href="https://www.imdb.com/title/tt2096673/" target="_blank">Divertida Mente 2 no IMDb</a></p>
+        <!-- Aviso ético e de acolhimento -->
+        <section class="aviso-profissional">
+            <p>
+                💛 <strong>Aviso importante:</strong> Este site tem caráter exclusivamente informativo e de acolhimento. Ele não diagnostica doenças e <strong>não substitui a orientação médica ou psicológica profissional</strong>. Em caso de crise ou sofrimento intenso, entre em contato gratuitamente com o <strong>CVV pelo telefone 188</strong> ou procure uma unidade de saúde.
+            </p>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 / 2026 - Desenvolvido por Milene Rodrigues - Todos os direitos reservados</p>
+        <p>© Desenvolvido por Milene Rodrigues - Todos os direitos reservados</p>
         <p>
             <a href="https://github.com/Milene-Arla">GitHub</a> 
         </p>
     </footer>
-     <script src="dados.js"></script>
+
+    <script src="dados.js"></script>
     <script src="app.js"></script>
 </body>
 
