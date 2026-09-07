@@ -1,5 +1,9 @@
-// Configuração da URL da API Backend Spring Boot
-const API_BASE_URL = "http://localhost:8080/api";
+// Detecta automaticamente se está rodando local ou na Vercel
+const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const API_PRODUCAO = "http://localhost:8080/api"; 
+const API_LOCAL = "http://localhost:8080/api";
+
+const API_BASE_URL = isLocalhost ? API_LOCAL : API_PRODUCAO;
 
 let categorias = typeof categoriasPadrao !== "undefined" ? categoriasPadrao : [];
 let recomendacoes = typeof dados !== "undefined" ? dados : [];
