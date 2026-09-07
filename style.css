@@ -207,4 +207,176 @@ label {
     }
 
     section button {
-        padding: 0.6rem 1
+        padding: 0.6rem 1rem;
+    }
+}
+
+/* Estilos da Seção de Check-in (Funcionalidade de Cadastro da AC 1) */
+.secao-checkin {
+    width: 100%;
+    max-width: 800px;
+    background-color: #FDFBF7;
+    border-radius: 0.8rem;
+    padding: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid #52796F;
+}
+
+.subtitulo-checkin {
+    font-size: 1.45rem;
+    color: #52796F;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.descricao-checkin {
+    font-size: 0.95rem;
+    color: #2F3E46;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.form-checkin {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo-grupo label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2F3E46;
+    margin-bottom: 0.2rem;
+}
+
+.codigo-input-wrapper {
+    display: flex;
+    gap: 0.6rem;
+    width: 100%;
+}
+
+.codigo-input-wrapper input {
+    flex: 1;
+    font-family: monospace;
+    letter-spacing: 0.08rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-gerar-codigo {
+    background-color: #84A98C;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-gerar-codigo:hover {
+    background-color: #52796F;
+    transform: translateY(-1px);
+}
+
+.dica-campo {
+    font-size: 0.8rem;
+    color: #6C757D;
+}
+
+.badge-nivel {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    background-color: #52796F;
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.escala-legenda {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #52796F;
+    margin-top: 0.2rem;
+}
+
+.form-checkin select,
+.form-checkin textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #52796F;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+    background-color: #FFFFFF;
+    color: #2F3E46;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-checkin select:focus,
+.form-checkin textarea:focus,
+.form-checkin input:focus {
+    outline: none;
+    border-color: #354F52;
+    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.25);
+}
+
+.form-checkin textarea {
+    resize: vertical;
+}
+
+.btn-salvar-checkin {
+    background-color: #52796F;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(82, 121, 111, 0.25);
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.btn-salvar-checkin:hover {
+    background-color: #354F52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(53, 79, 82, 0.35);
+}
+
+.feedback-checkin {
+    margin-top: 1.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: left;
+    animation: fadeIn 0.3s ease;
+}
+
+.feedback-sucesso {
+    background-color: #E8F5E9;
+    border-left: 5px solid #2E7D32;
+    color: #1B5E20;
+}
+
+.feedback-erro {
+    background-color: #FFEBEE;
+    border-left: 5px solid #C62828;
+    color: #B71C1C;
+}

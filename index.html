@@ -11,7 +11,64 @@
 <body>
     <h1>Respire e Relaxe: Seu Espaço Contra a Ansiedade</h1>
 
-    <main>
+    <main class="container">
+        <!-- AC 1 - Funcionalidade Principal de Cadastro (INSERT): Check-in de Sentimentos -->
+        <section class="secao-checkin" id="secao-checkin">
+            <h2 class="subtitulo-checkin">🌿 Check-in: Como você está se sentindo hoje?</h2>
+            <p class="descricao-checkin">
+                Registre seu momento com segurança e discrição. O código de acompanhamento servirá para você consultar seu histórico futuramente, sem necessidade de login.
+            </p>
+
+            <form id="form-checkin" onsubmit="salvarCheckin(event)" class="form-checkin">
+                <div class="campo-grupo">
+                    <label for="codigo-acompanhamento">Código de Acompanhamento (pessoal e anônimo):</label>
+                    <div class="codigo-input-wrapper">
+                        <input type="text" id="codigo-acompanhamento" placeholder="Ex: RESPIRA-2026" required maxlength="50">
+                        <button type="button" class="btn-gerar-codigo" onclick="gerarCodigoAleatorio()">🎲 Gerar Código</button>
+                    </div>
+                    <small class="dica-campo">Guarde este código para acessar seus registros futuros.</small>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="nivel-ansiedade">
+                        Nível de Ansiedade (1 a 10):
+                        <span id="badge-nivel" class="badge-nivel">Nível 5</span>
+                    </label>
+                    <input type="range" id="nivel-ansiedade" min="1" max="10" value="5" oninput="atualizarBadgeNivel(this.value)">
+                    <div class="escala-legenda">
+                        <span>1 (Leve / Tranquilo)</span>
+                        <span>5 (Moderado)</span>
+                        <span>10 (Muito Intenso)</span>
+                    </div>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="emocao-principal">Como você descreveria sua emoção predominante?</label>
+                    <select id="emocao-principal" required>
+                        <option value="" disabled selected>Selecione uma emoção...</option>
+                        <option value="Ansiosa(o)">Ansiosa(o)</option>
+                        <option value="Sobrecarregada(o)">Sobrecarregada(o)</option>
+                        <option value="Preocupada(o)">Preocupada(o)</option>
+                        <option value="Inquieta(o)">Inquieta(o)</option>
+                        <option value="Cansada(o)">Cansada(o)</option>
+                        <option value="Calma(o)">Calma(o) / Tranquila(o)</option>
+                        <option value="Aliviada(o)">Aliviada(o)</option>
+                    </select>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="anotacao-checkin">Anotação pessoal ou desabafo (opcional):</label>
+                    <textarea id="anotacao-checkin" placeholder="Escreva o que está em sua mente agora... Este espaço é só seu." maxlength="500" rows="3"></textarea>
+                </div>
+
+                <button type="submit" id="btn-salvar-checkin" class="btn-salvar-checkin">
+                    Salvar Check-in
+                </button>
+            </form>
+
+            <div id="feedback-checkin" class="feedback-checkin" style="display: none;"></div>
+        </section>
+
         <section>
             
              <input type="text" placeholder="Digite a palavra-chave" id="campo-pesquisa">
@@ -107,11 +164,9 @@
     </main>
 
     <footer>
-        <p>© 2024 - Desenvolvido por Milene Arla - Todos os direitos reservados</p>
+        <p>© 2024 / 2026 - Desenvolvido por Milene Rodrigues - Todos os direitos reservados</p>
         <p>
-            <a href="https://www.linkedin.com/in/milene-oliveira-82806a211/">LinkedIn</a> |
-            <a href="https://github.com/Milene-Arla">GitHub</a> |
-            <a href="mailto:milene16@outlook.com">Email</a>
+            <a href="https://github.com/Milene-Arla">GitHub</a> 
         </p>
     </footer>
      <script src="dados.js"></script>

@@ -26,6 +26,3 @@ cd AjudaParaAnsiedadeSite
 
 ## Link do site:
 [Site do Projeto](https://ajuda-para-ansiedade-site.vercel.app/)
-
-## Autor
-Este projeto foi criado por Milene Arla, como parte do aprendizado na Imersão Dev com Google Gemini - Alura. Para entrar em contato, envie um e-mail para: milene16@outlook.com
