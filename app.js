@@ -203,7 +203,7 @@ async function salvarCheckin(event) {
   }
 
   btnSalvar.disabled = true;
-  btnSalvar.innerText = "⏳ Enviando para a API Spring Boot...";
+  btnSalvar.innerText = "⏳ Guardando seu registro...";
 
   const payload = {
     codigoAcompanhamento: codigo,
