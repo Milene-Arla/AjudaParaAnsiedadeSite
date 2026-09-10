@@ -19,11 +19,11 @@
                 Registre seu momento com segurança e discrição. O código de acompanhamento servirá para você consultar seu histórico futuramente, sem necessidade de login.
             </p>
 
-            <form id="form-checkin" onsubmit="salvarCheckin(event)" class="form-checkin">
+            <form id="form-checkin" onsubmit="salvarCheckin(event)" class="form-checkin" autocomplete="off">
                 <div class="campo-grupo">
                     <label for="codigo-acompanhamento">Código de Acompanhamento (pessoal e anônimo):</label>
                     <div class="codigo-input-wrapper">
-                        <input type="text" id="codigo-acompanhamento" placeholder="Ex: RESPIRA-2026" required maxlength="50">
+                        <input type="text" id="codigo-acompanhamento" placeholder="Ex: RESPIRA-2026" required maxlength="50" autocomplete="off">
                         <button type="button" class="btn-gerar-codigo" onclick="gerarCodigoAleatorio()">🎲 Gerar Código</button>
                     </div>
                     <small class="dica-campo">Guarde este código para acessar seus registros futuros.</small>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="barra-pesquisa-container">
-                <input type="text" placeholder="Digite uma palavra-chave (ex: respiração, filme, livro...)" id="campo-pesquisa">
+                <input type="text" placeholder="Digite uma palavra-chave (ex: respiração, filme, livro...)" id="campo-pesquisa" autocomplete="off">
                 <button onclick="pesquisar()">Filtrar</button>
             </div>
         </section>
