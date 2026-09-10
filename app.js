@@ -1,6 +1,7 @@
-// Configuração da URL da API Backend Spring Boot
-const API_BASE_URL = "http://localhost:8080/api";
-
+const API_BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:8080/api"
+    : "https://ajuda-para-ansiedade-api.onrender.com/api";
+    
 let categorias = typeof categoriasPadrao !== "undefined" ? categoriasPadrao : [];
 let recomendacoes = typeof dados !== "undefined" ? dados : [];
 let categoriaSelecionadaId = null;
