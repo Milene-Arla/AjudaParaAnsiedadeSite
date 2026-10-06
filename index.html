@@ -69,6 +69,65 @@
             <div id="feedback-checkin" class="feedback-checkin" style="display: none;"></div>
         </section>
 
+        <!-- AC 2 - Funcionalidade de Consulta e Linha do Tempo Emocional (GET) -->
+        <section class="secao-historico" id="secao-historico">
+            <div class="historico-header">
+                <div>
+                    <h2 class="subtitulo-historico">📖 Meu Histórico & Linha do Tempo Emocional</h2>
+                    <p class="descricao-historico">
+                        Consulte suas anotações anteriores e veja a evolução do seu nível de ansiedade ao longo dos dias. Totalmente privado e protegido pelo seu código.
+                    </p>
+                </div>
+            </div>
+
+            <div class="consulta-historico-box">
+                <div class="codigo-input-wrapper">
+                    <input type="text" id="input-codigo-historico" placeholder="Digite seu código (ex: ACOLHE-3217)" maxlength="50">
+                    <button type="button" class="btn-consultar-historico" onclick="consultarHistorico()">
+                        🔍 Ver Meu Histórico
+                    </button>
+                </div>
+                <div class="botoes-atalho-historico">
+                    <button type="button" class="btn-atalho-codigo" onclick="usarCodigoAtual()">
+                        Usar o código do formulário acima
+                    </button>
+                    <button type="button" class="btn-atalho-codigo" onclick="preencherCodigoExemplo('ACOLHE-3217')">
+                        Exemplo: ACOLHE-3217
+                    </button>
+                    <button type="button" class="btn-atalho-codigo" onclick="preencherCodigoExemplo('PAZ-1715')">
+                        Exemplo: PAZ-1715
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumo e Estatísticas do Código Consultado -->
+            <div id="historico-metricas" class="historico-metricas" style="display: none;">
+                <div class="metrica-card">
+                    <span class="metrica-numero" id="metrica-total">0</span>
+                    <span class="metrica-rotulo">Registros</span>
+                </div>
+                <div class="metrica-card">
+                    <span class="metrica-numero" id="metrica-media">0.0</span>
+                    <span class="metrica-rotulo">Média Ansiedade</span>
+                </div>
+                <div class="metrica-card">
+                    <span class="metrica-numero" id="metrica-emocao">-</span>
+                    <span class="metrica-rotulo">Emoção Mais Frequente</span>
+                </div>
+            </div>
+
+            <!-- Área de Mensagens de Status / Carregamento -->
+            <div id="status-historico" class="status-historico" style="display: none;"></div>
+
+            <!-- Lista da Linha do Tempo (Timeline) -->
+            <div id="container-timeline" class="container-timeline">
+                <div class="historico-vazio">
+                    <span class="icone-vazio">🌱</span>
+                    <p>Digite seu código de acompanhamento acima para carregar sua linha do tempo emocional.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Seção: Quiz de Interesses e Recursos de Acolhimento -->
         <section class="secao-quiz-interesses">
             <h2 class="subtitulo-interesses">O que você procura hoje?</h2>

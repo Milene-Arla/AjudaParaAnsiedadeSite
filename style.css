@@ -580,7 +580,194 @@ label {
     border-left: 5px solid #C62828;
     color: #B71C1C;
 }
+/* ============================================================
+   ESTILIZAÇÃO AC 2 - HISTÓRICO & LINHA DO TEMPO EMOCIONAL
+   ============================================================ */
+.secao-historico {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border-top: 4px solid #52796F;
+    animation: fadeIn 0.4s ease;
+}
 
+.subtitulo-historico {
+    font-size: 1.4rem;
+    color: #2F3E46;
+    margin-bottom: 0.5rem;
+}
+
+.descricao-historico {
+    font-size: 0.95rem;
+    color: #555555;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.consulta-historico-box {
+    background: #f8faf9;
+    border: 1px solid #e2ece9;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-consultar-historico {
+    background-color: #52796F;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-consultar-historico:hover {
+    background-color: #354F52;
+}
+
+.botoes-atalho-historico {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.btn-atalho-codigo {
+    background: #ffffff;
+    border: 1px dashed #52796F;
+    color: #354F52;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-atalho-codigo:hover {
+    background: #E8F5E9;
+    border-color: #2E7D32;
+}
+
+/* Métricas / Resumo */
+.historico-metricas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metrica-card {
+    background: #f4f7f6;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 3px solid #84A98C;
+}
+
+.metrica-numero {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #2F3E46;
+}
+
+.metrica-rotulo {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Timeline */
+.container-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-registro {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #84A98C;
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-registro:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card-registro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.card-data {
+    font-size: 0.85rem;
+    color: #777777;
+    font-weight: 500;
+}
+
+.card-nivel-tag {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.nivel-leve { background: #E8F5E9; color: #2E7D32; }
+.nivel-moderado { background: #FFF3E0; color: #E65100; }
+.nivel-intenso { background: #FFEBEE; color: #C62828; }
+
+.card-emocao {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2F3E46;
+    margin-bottom: 0.5rem;
+}
+
+.card-anotacao {
+    font-size: 0.95rem;
+    color: #444444;
+    background: #fafafa;
+    border-left: 3px solid #ddd;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    font-style: italic;
+    margin-top: 0.4rem;
+}
+
+.historico-vazio {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #777;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.icone-vazio {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
 /* Responsividade para telas menores */
 @media (max-width: 600px) {
     h1 {
