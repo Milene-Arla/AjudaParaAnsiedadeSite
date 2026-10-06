@@ -286,7 +286,149 @@ async function inicializar() {
     apiOnline = false;
   }
 }
+// ============================================================
+// AC 2 - FUNÇÕES DA LINHA DO TEMPO & HISTÓRICO EMOCIONAL (GET)
+// ============================================================
 
+function usarCodigoAtual() {
+  const codigoCheckin = document.getElementById("codigo-acompanhamento")?.value.trim().toUpperCase();
+  if (!codigoCheckin) {
+    alert("Gere ou digite um código de acompanhamento no formulário primeiro!");
+    return;
+  }
+  const inputHistorico = document.getElementById("input-codigo-historico");
+  if (inputHistorico) {
+    inputHistorico.value = codigoCheckin;
+    consultarHistorico();
+  }
+}
+
+function preencherCodigoExemplo(codigo) {
+  const inputHistorico = document.getElementById("input-codigo-historico");
+  if (inputHistorico) {
+    inputHistorico.value = codigo;
+    consultarHistorico();
+  }
+}
+
+async function consultarHistorico() {
+  const inputCodigo = document.getElementById("input-codigo-historico");
+  const containerTimeline = document.getElementById("container-timeline");
+  const metricasBox = document.getElementById("historico-metricas");
+
+  const codigo = inputCodigo?.value.trim().toUpperCase();
+
+  if (!codigo) {
+    alert("Por favor, digite um código de acompanhamento para consultar.");
+    return;
+  }
+
+  containerTimeline.innerHTML = `
+    <div class="historico-vazio">
+      <span class="icone-vazio">⏳</span>
+      <p>Buscando registros na API para o código <strong>${codigo}</strong>...</p>
+    </div>
+  `;
+
+  try {
+    // Busca os registros da API em Kotlin/PostgreSQL via GET
+    const response = await fetch(`${API_BASE_URL}/checkins`);
+    if (!response.ok) throw new Error("Erro ao consultar a API.");
+
+    const todos = await response.json();
+    // Filtra pelo código digitado (ignorando maiúsculas/minúsculas)
+    const filtrados = todos.filter(item => 
+      item.codigoAcompanhamento && 
+      item.codigoAcompanhamento.trim().toUpperCase() === codigo
+    );
+
+    // Ordena do mais recente para o mais antigo
+    filtrados.sort((a, b) => new Date(b.dataRegistro || 0) - new Date(a.dataRegistro || 0));
+
+    if (filtrados.length === 0) {
+      metricasBox.style.display = "none";
+      containerTimeline.innerHTML = `
+        <div class="historico-vazio">
+          <span class="icone-vazio">🔍</span>
+          <p>Nenhum registro encontrado para o código <strong>${codigo}</strong>.</p>
+          <small style="color: #888;">Faça um novo check-in acima usando este código para começar seu histórico!</small>
+        </div>
+      `;
+      return;
+    }
+
+    // Calcula estatísticas
+    const total = filtrados.length;
+    const somaAnsiedade = filtrados.reduce((acc, curr) => acc + (curr.nivelAnsiedade || 0), 0);
+    const mediaAnsiedade = (somaAnsiedade / total).toFixed(1);
+
+    // Emoção mais frequente
+    const contagemEmocoes = {};
+    filtrados.forEach(c => {
+      if (c.emocaoPrincipal) {
+        contagemEmocoes[c.emocaoPrincipal] = (contagemEmocoes[c.emocaoPrincipal] || 0) + 1;
+      }
+    });
+    let emocaoFrequente = "-";
+    let maxOcorrencias = 0;
+    for (const [emocao, qtd] of Object.entries(contagemEmocoes)) {
+      if (qtd > maxOcorrencias) {
+        maxOcorrencias = qtd;
+        emocaoFrequente = emocao;
+      }
+    }
+
+    // Atualiza cards de métricas
+    document.getElementById("metrica-total").innerText = total;
+    document.getElementById("metrica-media").innerText = mediaAnsiedade;
+    document.getElementById("metrica-emocao").innerText = emocaoFrequente;
+    metricasBox.style.display = "grid";
+
+    // Renderiza a Timeline
+    containerTimeline.innerHTML = "";
+    filtrados.forEach(item => {
+      const dataObj = item.dataRegistro ? new Date(item.dataRegistro) : new Date();
+      const dataFormatada = dataObj.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+      const horaFormatada = dataObj.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      let classeNivel = "nivel-leve";
+      if (item.nivelAnsiedade >= 7) classeNivel = "nivel-intenso";
+      else if (item.nivelAnsiedade >= 4) classeNivel = "nivel-moderado";
+
+      const card = document.createElement("div");
+      card.className = "card-registro";
+      card.id = `card-checkin-${item.id}`;
+      card.innerHTML = `
+        <div class="card-registro-header">
+          <span class="card-data">📅 ${dataFormatada} às ${horaFormatada}</span>
+          <span class="card-nivel-tag ${classeNivel}">Nível ${item.nivelAnsiedade}/10</span>
+        </div>
+        <div class="card-emocao">
+          💛 Emoção: <strong>${item.emocaoPrincipal || "Não informada"}</strong>
+        </div>
+        ${item.anotacao ? `<div class="card-anotacao">"${item.anotacao}"</div>` : ''}
+      `;
+      containerTimeline.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Erro ao carregar histórico:", error);
+    metricasBox.style.display = "none";
+    containerTimeline.innerHTML = `
+      <div class="historico-vazio" style="border-color: #ffcdd2; color: #c62828;">
+        <span class="icone-vazio">⚠️</span>
+        <p>Não foi possível conectar à API para buscar os registros no momento.</p>
+      </div>
+    `;
+  }
+}
 // Eventos Globais
 document.addEventListener("DOMContentLoaded", () => {
   const inputBusca = document.getElementById("campo-pesquisa");
