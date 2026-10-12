@@ -387,7 +387,8 @@ async function consultarHistorico() {
     // Renderiza a Timeline
     containerTimeline.innerHTML = "";
     filtrados.forEach(item => {
-      const dataObj = item.dataRegistro ? new Date(item.dataRegistro) : new Date();
+      const dataIso = item.dataRegistro && !item.dataRegistro.endsWith("Z") ? item.dataRegistro + "Z" : item.dataRegistro;
+      const dataObj = dataIso ? new Date(dataIso) : new Date();
       const dataFormatada = dataObj.toLocaleDateString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
