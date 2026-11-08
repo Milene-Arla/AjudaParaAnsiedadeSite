@@ -282,10 +282,10 @@ async function inicializar() {
     renderizarBotoesCategorias();
     selecionarCategoria(categoriaSelecionadaId);
   } catch (error) {
-    // Modo local perfeitamente funcional
     apiOnline = false;
   }
 }
+
 // ============================================================
 // AC 2 - FUNÇÕES DA LINHA DO TEMPO & HISTÓRICO EMOCIONAL (GET)
 // ============================================================
@@ -409,12 +409,61 @@ async function consultarHistorico() {
       card.innerHTML = `
         <div class="card-registro-header">
           <span class="card-data">📅 ${dataFormatada} às ${horaFormatada}</span>
-          <span class="card-nivel-tag ${classeNivel}">Nível ${item.nivelAnsiedade}/10</span>
+          <span class="card-nivel-tag ${classeNivel}" id="badge-card-${item.id}">Nível ${item.nivelAnsiedade}/10</span>
         </div>
-        <div class="card-emocao">
+        <div class="card-emocao" id="emocao-card-${item.id}">
           💛 Emoção: <strong>${item.emocaoPrincipal || "Não informada"}</strong>
         </div>
-        ${item.anotacao ? `<div class="card-anotacao">"${item.anotacao}"</div>` : ''}
+        <div class="card-anotacao" id="anotacao-card-${item.id}" ${!item.anotacao ? 'style="display:none;"' : ''}>
+          "${item.anotacao || ''}"
+        </div>
+
+        <div class="card-acoes">
+          <button type="button" class="btn-editar-registro" onclick="abrirEdicaoRegistro(${item.id})">
+            ✏️ Atualizar como me sinto agora
+          </button>
+        </div>
+
+        <!-- Formulário expansível de Atualização (AC 3 - PUT) -->
+        <div class="card-form-edicao" id="form-edicao-${item.id}" style="display: none;">
+          <h4 class="edicao-titulo">🌱 Reavaliar este momento:</h4>
+          
+          <div class="edicao-campo">
+            <label for="edicao-nivel-${item.id}">
+              Novo Nível de Ansiedade (1 a 10): 
+              <span class="badge-nivel" id="badge-edicao-nivel-${item.id}">Nível ${item.nivelAnsiedade}</span>
+            </label>
+            <input type="range" id="edicao-nivel-${item.id}" min="1" max="10" value="${item.nivelAnsiedade}" 
+                   oninput="document.getElementById('badge-edicao-nivel-${item.id}').innerText = 'Nível ' + this.value">
+          </div>
+
+          <div class="edicao-campo">
+            <label for="edicao-emocao-${item.id}">Como se sente agora?</label>
+            <select id="edicao-emocao-${item.id}">
+              <option value="Ansiosa(o)" ${item.emocaoPrincipal === 'Ansiosa(o)' ? 'selected' : ''}>Ansiosa(o)</option>
+              <option value="Sobrecarregada(o)" ${item.emocaoPrincipal === 'Sobrecarregada(o)' ? 'selected' : ''}>Sobrecarregada(o)</option>
+              <option value="Preocupada(o)" ${item.emocaoPrincipal === 'Preocupada(o)' ? 'selected' : ''}>Preocupada(o)</option>
+              <option value="Inquieta(o)" ${item.emocaoPrincipal === 'Inquieta(o)' ? 'selected' : ''}>Inquieta(o)</option>
+              <option value="Cansada(o)" ${item.emocaoPrincipal === 'Cansada(o)' ? 'selected' : ''}>Cansada(o)</option>
+              <option value="Calma(o)" ${item.emocaoPrincipal === 'Calma(o)' ? 'selected' : ''}>Calma(o) / Tranquila(o)</option>
+              <option value="Aliviada(o)" ${item.emocaoPrincipal === 'Aliviada(o)' ? 'selected' : ''}>Aliviada(o)</option>
+            </select>
+          </div>
+
+          <div class="edicao-campo">
+            <label for="edicao-anotacao-${item.id}">Atualizar reflexão / desabafo:</label>
+            <textarea id="edicao-anotacao-${item.id}" rows="2" placeholder="O que mudou em você após respirar ou ler o conteúdo?">${item.anotacao || ''}</textarea>
+          </div>
+
+          <div class="edicao-botoes">
+            <button type="button" class="btn-salvar-edicao" id="btn-salvar-edicao-${item.id}" onclick="salvarEdicaoRegistro(${item.id}, '${item.codigoAcompanhamento}')">
+              💾 Salvar Atualização
+            </button>
+            <button type="button" class="btn-cancelar-edicao" onclick="fecharEdicaoRegistro(${item.id})">
+              Cancelar
+            </button>
+          </div>
+        </div>
       `;
       containerTimeline.appendChild(card);
     });
@@ -430,6 +479,149 @@ async function consultarHistorico() {
     `;
   }
 }
+
+// ============================================================
+// AC 3 - FUNÇÕES DE ATUALIZAÇÃO / REAVALIAÇÃO DE CHECK-IN (PUT)
+// ============================================================
+
+function abrirEdicaoRegistro(id) {
+  const formEdicao = document.getElementById(`form-edicao-${id}`);
+  if (!formEdicao) return;
+
+  const estaAberto = formEdicao.style.display !== "none" && formEdicao.style.display !== "";
+  if (estaAberto) {
+    formEdicao.style.display = "none";
+  } else {
+    formEdicao.style.display = "block";
+    const textarea = document.getElementById(`edicao-anotacao-${id}`);
+    if (textarea) textarea.focus();
+  }
+}
+
+function fecharEdicaoRegistro(id) {
+  const formEdicao = document.getElementById(`form-edicao-${id}`);
+  if (formEdicao) {
+    formEdicao.style.display = "none";
+  }
+}
+
+async function salvarEdicaoRegistro(id, codigo) {
+  const inputNivel = document.getElementById(`edicao-nivel-${id}`);
+  const selectEmocao = document.getElementById(`edicao-emocao-${id}`);
+  const textareaAnotacao = document.getElementById(`edicao-anotacao-${id}`);
+  const btnSalvar = document.getElementById(`btn-salvar-edicao-${id}`);
+  const badgeCard = document.getElementById(`badge-card-${id}`);
+  const emocaoCard = document.getElementById(`emocao-card-${id}`);
+  const anotacaoCard = document.getElementById(`anotacao-card-${id}`);
+
+  const novoNivel = parseInt(inputNivel?.value || "5", 10);
+  const novaEmocao = selectEmocao?.value || "Calma(o)";
+  const novaAnotacao = textareaAnotacao?.value.trim() || "";
+
+  if (btnSalvar) {
+    btnSalvar.disabled = true;
+    btnSalvar.innerText = "⏳ Atualizando na API...";
+  }
+
+  const payload = {
+    codigoAcompanhamento: codigo,
+    nivelAnsiedade: novoNivel,
+    emocaoPrincipal: novaEmocao,
+    anotacao: novaAnotacao
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/checkins/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Servidor retornou status ${response.status}`);
+    }
+
+    const atualizado = await response.json().catch(() => payload);
+
+    // Atualiza o card na tela
+    if (badgeCard) {
+      badgeCard.innerText = `Nível ${atualizado.nivelAnsiedade || novoNivel}/10`;
+      badgeCard.className = "card-nivel-tag";
+      if (novoNivel >= 7) badgeCard.classList.add("nivel-intenso");
+      else if (novoNivel >= 4) badgeCard.classList.add("nivel-moderado");
+      else badgeCard.classList.add("nivel-leve");
+    }
+
+    if (emocaoCard) {
+      emocaoCard.innerHTML = `💛 Emoção: <strong>${atualizado.emocaoPrincipal || novaEmocao}</strong>`;
+    }
+
+    if (anotacaoCard) {
+      if (novaAnotacao) {
+        anotacaoCard.innerText = `"${atualizado.anotacao || novaAnotacao}"`;
+        anotacaoCard.style.display = "block";
+      } else {
+        anotacaoCard.style.display = "none";
+      }
+    }
+
+    fecharEdicaoRegistro(id);
+    mostrarFeedbackTemporarioCard(id, "✨ Sentimentos atualizados com sucesso!", "sucesso");
+
+  } catch (error) {
+    console.warn("Aviso ao tentar atualizar via PUT:", error);
+
+    // Atualização otimista na tela (permite testar a experiência mesmo antes do deploy do backend)
+    if (badgeCard) {
+      badgeCard.innerText = `Nível ${novoNivel}/10`;
+      badgeCard.className = "card-nivel-tag";
+      if (novoNivel >= 7) badgeCard.classList.add("nivel-intenso");
+      else if (novoNivel >= 4) badgeCard.classList.add("nivel-moderado");
+      else badgeCard.classList.add("nivel-leve");
+    }
+
+    if (emocaoCard) {
+      emocaoCard.innerHTML = `💛 Emoção: <strong>${novaEmocao}</strong>`;
+    }
+
+    if (anotacaoCard) {
+      if (novaAnotacao) {
+        anotacaoCard.innerText = `"${novaAnotacao}"`;
+        anotacaoCard.style.display = "block";
+      } else {
+        anotacaoCard.style.display = "none";
+      }
+    }
+
+    fecharEdicaoRegistro(id);
+    mostrarFeedbackTemporarioCard(id, "🌱 Atualizado na interface! (Aguardando deploy do PUT no backend)", "alerta");
+  } finally {
+    if (btnSalvar) {
+      btnSalvar.disabled = false;
+      btnSalvar.innerText = "💾 Salvar Atualização";
+    }
+  }
+}
+
+function mostrarFeedbackTemporarioCard(id, mensagem, tipo) {
+  const card = document.getElementById(`card-checkin-${id}`);
+  if (!card) return;
+
+  const anterior = card.querySelector(".toast-feedback-edicao");
+  if (anterior) anterior.remove();
+
+  const toast = document.createElement("div");
+  toast.className = `toast-feedback-edicao ${tipo === 'sucesso' ? 'feedback-sucesso' : 'feedback-alerta'}`;
+  toast.innerText = mensagem;
+
+  card.appendChild(toast);
+  setTimeout(() => {
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 4500);
+}
+
 // Eventos Globais
 document.addEventListener("DOMContentLoaded", () => {
   const inputBusca = document.getElementById("campo-pesquisa");

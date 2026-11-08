@@ -538,6 +538,9 @@ label {
     resize: vertical;
 }
 
+/* ============================================================
+   ESTILIZAÇÃO AC 3 - ATUALIZAÇÃO / REAVALIAÇÃO DE REGISTRO (PUT)
+   ============================================================ */
 .btn-editar-registro {
     background-color: #f0f7f4;
     border: 1px solid #52796F;
@@ -548,11 +551,17 @@ label {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: inherit;
 }
 
 .btn-editar-registro:hover {
     background-color: #52796F;
     color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(82, 121, 111, 0.25);
 }
 
 .card-form-edicao {
@@ -561,7 +570,61 @@ label {
     border: 1px solid #cce3de;
     border-radius: 8px;
     padding: 1.1rem 1.2rem;
+    animation: fadeIn 0.25s ease;
     text-align: left;
+}
+
+.edicao-titulo {
+    font-size: 0.95rem;
+    color: #354F52;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.edicao-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+}
+
+.edicao-campo label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2F3E46;
+    margin-bottom: 0.1rem;
+}
+
+.edicao-campo input[type="range"] {
+    width: 100%;
+    accent-color: #52796F;
+    cursor: pointer;
+}
+
+.edicao-campo select,
+.edicao-campo textarea {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #a3b18a;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    color: #2F3E46;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.edicao-campo select:focus,
+.edicao-campo textarea:focus {
+    outline: none;
+    border-color: #52796F;
+    box-shadow: 0 0 0 2px rgba(82, 121, 111, 0.2);
+}
+
+.edicao-botoes {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
 }
 
 .btn-salvar-edicao {
@@ -570,8 +633,59 @@ label {
     border: none;
     padding: 0.55rem 1.1rem;
     border-radius: 5px;
+    font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-salvar-edicao:hover {
+    background-color: #354F52;
+}
+
+.btn-cancelar-edicao {
+    background-color: transparent;
+    color: #666666;
+    border: 1px solid #cccccc;
+    padding: 0.55rem 0.9rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-cancelar-edicao:hover {
+    background-color: #eeeeee;
+    color: #333333;
+}
+
+.toast-feedback-edicao {
+    margin-top: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.feedback-alerta {
+    background-color: #FFF8E1;
+    border-left: 4px solid #FFA000;
+    color: #7F5100;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .btn-salvar-checkin {
