@@ -538,6 +538,42 @@ label {
     resize: vertical;
 }
 
+.btn-editar-registro {
+    background-color: #f0f7f4;
+    border: 1px solid #52796F;
+    color: #52796F;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-editar-registro:hover {
+    background-color: #52796F;
+    color: #ffffff;
+}
+
+.card-form-edicao {
+    margin-top: 1rem;
+    background-color: #f7faf8;
+    border: 1px solid #cce3de;
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+    text-align: left;
+}
+
+.btn-salvar-edicao {
+    background-color: #52796F;
+    color: #ffffff;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .btn-salvar-checkin {
     background-color: #52796F;
     color: #FFFFFF;
